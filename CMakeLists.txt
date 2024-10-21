@@ -5,8 +5,12 @@ cmake_minimum_required (VERSION 3.8)
 project ("cpp-opengl")
 
 add_executable (cpp-opengl "src/cpp-opengl.cpp"
-        src/Window.h
-        src/Window.cpp)
+        src/window/Window.h
+        src/window/Window.cpp
+        src/shader/Shader.cpp
+        src/shader/Shader.h
+        src/render/Renderer.h
+        src/render/Renderer.cpp)
 
 find_package(glfw3 CONFIG REQUIRED)
 find_package(glad CONFIG REQUIRED)
