@@ -52,7 +52,22 @@ int main() {
 
         glUseProgram(shader.get_shader_programs()[0]);
 
-        renderer.update();
+        //renderer.update();
+        /*
+        *glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        // now when we draw the triangle we first use the vertex and orange fragment shader from the first program
+        glUseProgram(shaderProgramOrange);
+        // draw the first triangle using the data from our first VAO
+        glBindVertexArray(VAOs[0]);
+        glDrawArrays(GL_TRIANGLES, 0, 3);	// this call should output an orange triangle
+        // then we draw the second triangle using the data from the second VAO
+        // when we draw the second triangle we want to use a different shader program so we switch to the shader program with our yellow fragment shader.
+        glUseProgram(shaderProgramYellow);
+        glBindVertexArray(VAOs[1]);
+        glDrawArrays(GL_TRIANGLES, 0, 3);	// this call should output a yellow triangle
+         */
 
         glfwSwapBuffers(win.get_window());
         glfwPollEvents();
