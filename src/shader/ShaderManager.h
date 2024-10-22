@@ -7,17 +7,15 @@
 
 class shader {
 public:
-    shader(char *vertex_path, const std::vector<char *> &fragment_paths) : m_vertex_path_(vertex_path) {
+    explicit shader(char *vertex_path) : m_vertex_path_(vertex_path) {
         m_vertex_shader_ = glCreateShader(GL_VERTEX_SHADER);
-        for (char *path: fragment_paths) {
-            m_fragment_paths_.push_back(path);
-            m_fragment_shaders_.push_back(glCreateShader(GL_FRAGMENT_SHADER));
-        }
     }
 
-    bool init();
+    bool init() const;
 
     unsigned int get_vertex_shader() const;
+
+    unsigned int create_shader_program(char* path);
 
     std::vector<unsigned int> get_fragment_shaders() const;
 
@@ -26,7 +24,7 @@ public:
     void unload() const;
 
 private:
-    bool compile_shader(unsigned int, const char *path);
+    static bool compile_shader(unsigned int, const char *path);
 
 private:
     unsigned int m_vertex_shader_;
@@ -34,7 +32,6 @@ private:
     char *m_vertex_path_;
     std::vector<char *> m_fragment_paths_{};
     std::vector<unsigned int> m_fragment_shaders_{};
-    std::vector<const char *> m_shaders_src_{};
 };
 
 

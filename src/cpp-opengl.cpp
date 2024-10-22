@@ -2,7 +2,7 @@
 
 #include "render/Renderer.h"
 #include "window/Window.h"
-#include "shader/Shader.h"
+#include "shader/ShaderManager.h"
 
 int main() {
     window win(640, 480, "Hello World");
@@ -14,10 +14,9 @@ int main() {
 
     char *vert_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/vertex.vsh";
     char *frag_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/fragment.fsh";
+    char *frag2_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/fragment2.fsh";
 
-    const std::vector<char *> &paths{frag_path};
-
-    shader shader(vert_path, paths);
+    shader shader(vert_path);
     if (!shader.init()) {
         std::cout << "Failed to init shaders!" << std::endl;
         return -1;
@@ -38,10 +37,12 @@ int main() {
     model model_1(vert_1, 3);
     model model_2(vert_2, 3);
 
-    manager->add_model(model_1);
-    manager->add_model(model_2);
-
     renderer renderer(manager);
+    renderer.add_model(model_1);
+    renderer.add_model(model_2);
+
+    const unsigned int orange = shader.create_shader_program(frag_path);
+    const unsigned int yellow = shader.create_shader_program(frag2_path);
 
     renderer.init();
     while (!win.window_should_close()) {
@@ -50,7 +51,10 @@ int main() {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glUseProgram(shader.get_shader_programs()[0]);
+        glUseProgram(orange);
+
+
+        glUseProgram(yellow);
 
         //renderer.update();
         /*

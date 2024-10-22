@@ -7,8 +7,8 @@ project ("cpp-opengl")
 add_executable (cpp-opengl "src/cpp-opengl.cpp"
         src/window/Window.h
         src/window/Window.cpp
-        src/shader/Shader.cpp
-        src/shader/Shader.h
+        src/shader/ShaderManager.cpp
+        src/shader/ShaderManager.h
         src/render/Renderer.h
         src/render/Renderer.cpp
         src/obj/Model.h
