@@ -15,10 +15,15 @@ int main() {
     char *vert_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/vertex.vsh";
     char *frag_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/fragment.fsh";
 
-    shader shader(vert_path, frag_path);
-    shader.init();
+    const std::vector<char *> &paths{frag_path};
 
-    auto* manager = new model_manager();
+    shader shader(vert_path, paths);
+    if (!shader.init()) {
+        std::cout << "Failed to init shaders!" << std::endl;
+        return -1;
+    }
+
+    auto *manager = new model_manager();
 
     static float vert_1[] = {
         -0.9f, -0.5f, 0.0f,
@@ -36,7 +41,7 @@ int main() {
     manager->add_model(model_1);
     manager->add_model(model_2);
 
-    renderer renderer(shader, manager);
+    renderer renderer(manager);
 
     renderer.init();
     while (!win.window_should_close()) {
@@ -45,6 +50,8 @@ int main() {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
+        glUseProgram(shader.get_shader_programs()[0]);
+
         renderer.update();
 
         glfwSwapBuffers(win.get_window());
@@ -52,6 +59,7 @@ int main() {
     }
 
     renderer.unload();
+    shader.unload();
 
     delete manager;
     manager = nullptr;
