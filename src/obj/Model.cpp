@@ -9,8 +9,18 @@ int model::get_vertex_count() const {
     return m_vertex_count_;
 }
 
-float *model::get_vertices() const {
+float* model::get_vertices() const{
     return m_vertices_;
 }
+
+int model::get_index_location() const {
+    return m_index_location_;
+}
+
+void model::set_index_location(const int loc) {
+    m_index_location_ = loc;
+}
+
+
 
 

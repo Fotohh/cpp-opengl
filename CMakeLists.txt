@@ -7,14 +7,13 @@ project ("cpp-opengl")
 add_executable (cpp-opengl "src/cpp-opengl.cpp"
         src/window/Window.h
         src/window/Window.cpp
-        src/shader/ShaderManager.cpp
-        src/shader/ShaderManager.h
+        src/shader/Shader.cpp
+        src/shader/Shader.h
         src/render/Renderer.h
         src/render/Renderer.cpp
         src/obj/Model.h
         src/obj/Model.cpp
-        src/obj/ModelManager.h
-        src/obj/ModelManager.cpp)
+        )
 
 find_package(glfw3 CONFIG REQUIRED)
 find_package(glad CONFIG REQUIRED)
