@@ -6,9 +6,9 @@
 
 #include <iostream>
 
-void renderer::init() {
-    glGenVertexArrays(10, m_vaos);
-    glGenBuffers(10, m_vbos);
+void renderer::init(long size) {
+    glGenVertexArrays(size, m_vaos);
+    glGenBuffers(size, m_vbos);
 }
 
 void renderer::add_model(model &model) {

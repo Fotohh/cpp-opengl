@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 
+#include "obj/ModelManager.h"
 #include "render/Renderer.h"
 #include "window/Window.h"
 #include "shader/Shader.h"
@@ -41,7 +42,7 @@ int main() {
     };
 
     model model_1(vert_1, 3);
-    //model model_2(vert_2, 3);
+    model model_2(vert_2, 3);
 
     GLenum error = glGetError();
     error = glGetError();
@@ -49,15 +50,19 @@ int main() {
         std::cout << "OpenGL Error before render->add_model(model_1): " << error << std::endl;
     }
 
+    auto *m_manager = new model_manager();
+    m_manager->add_model(model_1);
+    m_manager->add_model(model_2);
+
+    render->init(m_manager->size());
+
     render->add_model(model_1); //error orginates from here:
-    //render->add_model(model_2);
+    render->add_model(model_2);
 
     error = glGetError();
     if (error != GL_NO_ERROR) {
         std::cout << "OpenGL Error after render->add_model(model_1): " << error << std::endl;
     }
-
-    render->init();
 
     while (!win.window_should_close()) {
         window::process_input(win.get_window());
@@ -69,8 +74,8 @@ int main() {
 
         render->render_model(model_1);
 
-        //glUseProgram(yellow);
-        // render->render_model(model_2);
+        glUseProgram(yellow);
+        render->render_model(model_2);
 
         glfwSwapBuffers(win.get_window());
         glfwPollEvents();

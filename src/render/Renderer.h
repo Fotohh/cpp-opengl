@@ -13,7 +13,7 @@ class renderer {
 
 public:
     renderer() = default;
-    void init();
+    void init(long size);
     void add_model(model &model);
     void unload() const;
     void render_model(const model &model) const;

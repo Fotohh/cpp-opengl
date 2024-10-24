@@ -13,7 +13,9 @@ add_executable (cpp-opengl "src/cpp-opengl.cpp"
         src/render/Renderer.cpp
         src/obj/Model.h
         src/obj/Model.cpp
-        )
+        src/obj/ModelManager.cpp
+        src/obj/ModelManager.h
+)
 
 find_package(glfw3 CONFIG REQUIRED)
 find_package(glad CONFIG REQUIRED)
