@@ -13,9 +13,9 @@ int main() {
         return -1;
     }
 
-    const char *vert_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/vertex.vsh";
-    char *frag_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/fragment.fsh";
-    char *frag2_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/fragment2.fsh";
+    const auto vert_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/vertex.vsh";
+    const auto frag_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/fragment.fsh";
+    const auto frag2_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/fragment2.fsh";
 
     shader shade_manager{};
 
@@ -75,6 +75,10 @@ int main() {
     glDeleteProgram(yellow);
 
     render.unload();
+
+    delete frag_path;
+    delete frag2_path;
+    delete vert_path;
 
     glfwTerminate();
 
