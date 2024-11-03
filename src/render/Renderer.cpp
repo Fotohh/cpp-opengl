@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-void renderer::init(long size) {
+void renderer::init(const size_t size) {
     glGenVertexArrays(size, m_vaos);
     glGenBuffers(size, m_vbos);
 }

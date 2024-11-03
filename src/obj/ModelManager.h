@@ -11,20 +11,20 @@
 
 
 class model_manager {
-
 public:
     model_manager() = default;
 
-    long add_model(model &model);
-    void remove_model(const model &model);
-    std::vector<model*> get_models() const;
-    long size() const;
+    void add_model(model model);
+
+    void remove_model(model model) const;
+
+    const std::vector<model> &get_models() const;
+
+    size_t size() const;
 
 private:
-    std::vector<model*> m_models_{};
-
+    std::vector<model> m_models_;
 };
-
 
 
 #endif //MODELMANAGER_H

@@ -6,20 +6,26 @@
 #define MODEL_H
 
 class model {
-
 public:
     model(float vertices[], const int vertex_count) : m_vertices_(vertices), m_vertex_count_(vertex_count) {
-
     }
 
-    float* get_vertices() const;
+    float *get_vertices() const;
+
     int get_vertex_count() const;
+
     int get_index_location() const;
+
+    bool operator==(const model& other) const {
+        return m_index_location_ == other.get_index_location();
+    }
+
     void set_index_location(int loc);
+
 private:
-    float* m_vertices_;
+    float *m_vertices_;
     const int m_vertex_count_;
-    int m_index_location_{};
+    int m_index_location_ = 0;
 };
 
 #endif //MODEL_H
