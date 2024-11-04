@@ -1,7 +1,3 @@
-//
-// Created by zinha on 10/20/2024.
-//
-
 #include "Renderer.h"
 
 #include <iostream>
@@ -15,9 +11,7 @@ void Renderer::add_model(Model &model) {
     glBindVertexArray(m_vaos[m_init_count_]);
     glBindBuffer(GL_ARRAY_BUFFER, m_vbos[m_init_count_]);
 
-    std::cout << "VAO ID: " << m_vaos[m_init_count_] << ", VBO ID: " << m_vbos[m_init_count_] << std::endl;
-
-    glBufferData(GL_ARRAY_BUFFER, model.get_vertex_count() * sizeof(float) * 3, &model.get_vertices()[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, model.get_vertices().size() * sizeof(float), &model.get_vertices()[0], GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);

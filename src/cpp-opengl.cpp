@@ -29,12 +29,13 @@ int main() {
 
     Renderer render{};
 
-    static float vert_1[] = {
+    static std::vector<float> vert_1 = {
         -0.9f, -0.5f, 0.0f,
         -0.0f, -0.5f, 0.0f,
         -0.45f, 0.5f, 0.0f,
     };
-    static float vert_2[] = {
+
+    static std::vector<float> vert_2 = {
         0.0f, -0.5f, 0.0f,
         0.9f, -0.5f, 0.0f,
         0.45f, 0.5f, 0.0f
@@ -75,10 +76,6 @@ int main() {
     glDeleteProgram(yellow);
 
     render.unload();
-
-    delete frag_path;
-    delete frag2_path;
-    delete vert_path;
 
     glfwTerminate();
 
