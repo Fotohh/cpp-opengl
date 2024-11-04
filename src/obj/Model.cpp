@@ -5,18 +5,18 @@
 #include "Model.h"
 
 
-int model::get_vertex_count() const {
+int Model::get_vertex_count() const {
     return m_vertex_count_;
 }
 
-float *model::get_vertices() const {
+const std::vector<float>& Model::get_vertices() {
     return m_vertices_;
 }
 
-int model::get_index_location() const {
+int Model::get_index_location() const {
     return m_index_location_;
 }
 
-void model::set_index_location(const int loc) {
+void Model::set_index_location(const int loc) {
     m_index_location_ = loc;
 }

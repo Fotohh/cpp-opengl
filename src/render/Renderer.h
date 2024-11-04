@@ -9,14 +9,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-class renderer {
+class Renderer {
 
 public:
-    renderer() = default;
+    Renderer() = default;
     void init(size_t size);
-    void add_model(model &model);
+    void add_model(Model &model);
     void unload() const;
-    void render_model(const model &model) const;
+    void render_model(const Model &model) const;
 
 public:
     unsigned int m_vaos[10]{};

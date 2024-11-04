@@ -8,10 +8,10 @@
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
-class window {
+class Window {
 public:
-    window(const int width, const int height, const char *title): m_width_(width), m_height_(height),
-                                                                          m_title_(title), m_is_running_(nullptr) {
+    Window(const int width, const int height, const char *title): m_width_(width), m_height_(height),
+                                                                          m_title_(title), m_is_running_(false) {
     }
 
     bool init();

@@ -6,10 +6,10 @@
 #include "shader/Shader.h"
 
 int main() {
-    window win(640, 480, "Hello World");
+    Window win(640, 480, "Hello World");
 
     if (!win.init()) {
-        std::cout << "Failed to init window!" << std::endl;
+        std::cout << "Failed to init Window!" << std::endl;
         return -1;
     }
 
@@ -17,7 +17,7 @@ int main() {
     const auto frag_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/fragment.fsh";
     const auto frag2_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/fragment2.fsh";
 
-    shader shade_manager{};
+    Shader shade_manager{};
 
     if (!shade_manager.init_vertex_shader(vert_path)) {
         std::cout << "Failed to init vertex shader!" << std::endl;
@@ -27,7 +27,7 @@ int main() {
     const unsigned int orange = shade_manager.create_shader_program(frag_path);
     const unsigned int yellow = shade_manager.create_shader_program(frag2_path);
 
-    renderer render{};
+    Renderer render{};
 
     static float vert_1[] = {
         -0.9f, -0.5f, 0.0f,
@@ -40,10 +40,10 @@ int main() {
         0.45f, 0.5f, 0.0f
     };
 
-    model model_1(vert_1, 3);
-    model model_2(vert_2, 3);
+    Model model_1(vert_1, 3);
+    Model model_2(vert_2, 3);
 
-    model_manager m_manager;
+    ModelManager m_manager;
     m_manager.add_model(model_1);
     m_manager.add_model(model_2);
 
@@ -53,7 +53,7 @@ int main() {
     render.add_model(model_2);
 
     while (!win.window_should_close()) {
-        window::process_input(win.get_window());
+        Window::process_input(win.get_window());
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);

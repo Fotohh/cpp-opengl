@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-bool shader::init_vertex_shader(const char *vertex_path) {
+bool Shader::init_vertex_shader(const char *vertex_path) {
     m_vertex_shader_ = glCreateShader(GL_VERTEX_SHADER);
     const bool vert_status = compile_shader(m_vertex_shader_, vertex_path);
 
@@ -15,7 +15,7 @@ bool shader::init_vertex_shader(const char *vertex_path) {
 
 
 
-unsigned int shader::create_shader_program(const char* path) const {
+unsigned int Shader::create_shader_program(const char* path) const {
 
     const unsigned int shader = glCreateShader(GL_FRAGMENT_SHADER);
     const unsigned int program = glCreateProgram();
@@ -42,7 +42,7 @@ unsigned int shader::create_shader_program(const char* path) const {
     glDeleteShader(shader);
     return program;
 }
-bool shader::compile_shader(const unsigned int shader, const char *path) {
+bool Shader::compile_shader(const unsigned int shader, const char *path) {
     std::ifstream file(path);
     const std::string str((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
     const char *stream = str.c_str();
@@ -60,6 +60,6 @@ bool shader::compile_shader(const unsigned int shader, const char *path) {
     return stream;
 }
 
-void shader::cleanup() const {
+void Shader::cleanup() const {
     glDeleteShader(m_vertex_shader_);
 }

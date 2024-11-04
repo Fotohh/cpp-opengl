@@ -5,9 +5,9 @@
 #include <vector>
 #include <glad/glad.h>
 
-class shader {
+class Shader {
 public:
-    shader() = default;
+    Shader() = default;
 
     bool init_vertex_shader(const char *vertex_path);
 

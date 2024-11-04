@@ -1,23 +1,23 @@
 
 #include "Window.h"
 
-int window::get_width() const {
+int Window::get_width() const {
     return m_width_;
 }
 
-int window::get_height() const {
+int Window::get_height() const {
     return m_height_;
 }
 
-GLFWwindow* window::get_window() const {
+GLFWwindow* Window::get_window() const {
     return m_window_;
 }
 
-const char* window::get_title() const {
+const char* Window::get_title() const {
     return m_title_;
 }
 
-bool window::is_running() const {
+bool Window::is_running() const {
     return m_is_running_;
 }
 
@@ -30,13 +30,13 @@ void framebuffer_size_callback(GLFWwindow* window,const int width,const int heig
     glViewport(0, 0, width, height);
 }
 
-void window::process_input(GLFWwindow* window)
+void Window::process_input(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 }
 
-bool window::init() {
+bool Window::init() {
 
     if(m_is_running_) {
         std::cout << "Program already running!";
@@ -52,7 +52,7 @@ bool window::init() {
 
     m_window_ = glfwCreateWindow(m_width_, m_height_, m_title_, nullptr, nullptr);
     if (m_window_ == nullptr) {
-        std::cout << "Failed to create GLFW window" << std::endl;
+        std::cout << "Failed to create GLFW Window" << std::endl;
         glfwTerminate();
         return false;
     }
@@ -72,7 +72,7 @@ bool window::init() {
     return true;
 }
 
-bool window::window_should_close() const
+bool Window::window_should_close() const
 {
     return glfwWindowShouldClose(m_window_);
 }

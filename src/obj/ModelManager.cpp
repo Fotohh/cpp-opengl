@@ -4,18 +4,18 @@
 
 #include "ModelManager.h"
 
-void model_manager::add_model(const model model) {
+void ModelManager::add_model(const Model model) {
     m_models_.push_back(model);
 }
 
-const std::vector<model> &model_manager::get_models() const {
+const std::vector<Model> &ModelManager::get_models() const {
     return m_models_;
 }
 
-size_t model_manager::size() const {
+size_t ModelManager::size() const {
     return m_models_.size();
 }
 
-void model_manager::remove_model(const model model) const {
+void ModelManager::remove_model(const Model model) const {
     auto it = std::find(m_models_.begin(), m_models_.end(), model);
 }

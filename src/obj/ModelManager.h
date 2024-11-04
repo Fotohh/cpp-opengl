@@ -10,20 +10,20 @@
 #include "Model.h"
 
 
-class model_manager {
+class ModelManager {
 public:
-    model_manager() = default;
+    ModelManager() = default;
 
-    void add_model(model model);
+    void add_model(Model model);
 
-    void remove_model(model model) const;
+    void remove_model(Model model) const;
 
-    const std::vector<model> &get_models() const;
+    const std::vector<Model> &get_models() const;
 
     size_t size() const;
 
 private:
-    std::vector<model> m_models_;
+    std::vector<Model> m_models_;
 };
 
 
