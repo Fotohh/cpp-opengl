@@ -16,7 +16,7 @@ public:
 
     void add_model(Model model);
 
-    void remove_model(Model model) const;
+    void remove_model(Model model);
 
     const std::vector<Model> &get_models() const;
 
