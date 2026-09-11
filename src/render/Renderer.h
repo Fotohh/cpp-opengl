@@ -23,7 +23,9 @@ public:
     unsigned int m_vbos[10]{};
     unsigned int m_ebos[10]{};
 private:
+    static constexpr size_t MAX_MODELS = 10;
     int m_init_count_ = 0;
+    size_t m_capacity_ = 0;
 };
 
 #endif //RENDERER_H
