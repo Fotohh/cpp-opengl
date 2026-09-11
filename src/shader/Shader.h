@@ -19,7 +19,7 @@ private:
     static bool compile_shader(unsigned int, const char *path);
 
 private:
-    unsigned int m_vertex_shader_;
+    unsigned int m_vertex_shader_{};
 };
 
 
