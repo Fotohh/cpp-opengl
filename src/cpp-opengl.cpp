@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 
 #include "obj/ModelManager.h"
 #include "render/Renderer.h"
@@ -13,19 +13,30 @@ int main() {
         return -1;
     }
 
-    const auto vert_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/vertex.vsh";
-    const auto frag_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/fragment.fsh";
-    const auto frag2_path = "G:/Zinha/coding/cpp/cpp-opengl/shaders/fragment2.fsh";
+    const auto vert_path = "shaders/vertex.vsh";
+    const auto frag_path = "shaders/fragment.fsh";
+    const auto frag2_path = "shaders/fragment2.fsh";
 
     Shader shade_manager{};
 
     if (!shade_manager.init_vertex_shader(vert_path)) {
         std::cout << "Failed to init vertex shader!" << std::endl;
+        glfwDestroyWindow(win.get_window());
+        glfwTerminate();
         return -1;
     }
 
     const unsigned int orange = shade_manager.create_shader_program(frag_path);
     const unsigned int yellow = shade_manager.create_shader_program(frag2_path);
+
+    if(orange == 0 || yellow == 0) {
+        glDeleteProgram(orange);
+        glDeleteProgram(yellow);
+        shade_manager.cleanup();
+        glfwDestroyWindow(win.get_window());
+        glfwTerminate();
+        return -1;
+    }
 
     Renderer render{};
 
@@ -77,6 +88,7 @@ int main() {
 
     render.unload();
 
+    glfwDestroyWindow(win.get_window());
     glfwTerminate();
 
     return 0;
