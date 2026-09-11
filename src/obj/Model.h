@@ -19,7 +19,7 @@ public:
     int get_index_location() const;
 
     bool operator==(const Model& other) const {
-        return m_index_location_ == other.get_index_location();
+        return m_vertices_ == other.m_vertices_ && m_vertex_count_ == other.m_vertex_count_;
     }
 
     void set_index_location(int loc);
@@ -27,7 +27,7 @@ public:
 private:
     std::vector<float> m_vertices_;
     const int m_vertex_count_;
-    int m_index_location_ = 0;
+    int m_index_location_ = -1;
 };
 
 #endif //MODEL_H
