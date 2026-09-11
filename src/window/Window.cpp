@@ -50,6 +50,10 @@ bool Window::init() {
         return false;
     }
 
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
     m_window_ = glfwCreateWindow(m_width_, m_height_, m_title_, nullptr, nullptr);
     if (m_window_ == nullptr) {
         std::cout << "Failed to create GLFW Window" << std::endl;
@@ -57,14 +61,15 @@ bool Window::init() {
         return false;
     }
 
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
     glfwMakeContextCurrent(m_window_);
     glfwSetFramebufferSizeCallback(m_window_, framebuffer_size_callback);
     glfwSetInputMode(m_window_, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
     if(!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
         std::cout << "Failed to load GLAD" << std::endl;
+        glfwDestroyWindow(m_window_);
+        m_window_ = nullptr;
+        glfwTerminate();
         return false;
     }
 
@@ -76,4 +81,3 @@ bool Window::window_should_close() const
 {
     return glfwWindowShouldClose(m_window_);
 }
-
