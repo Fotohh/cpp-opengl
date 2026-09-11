@@ -8,6 +8,8 @@ bool Shader::init_vertex_shader(const char *vertex_path) {
 
     if (!vert_status) {
         std::cout << "Failed to load vertex shaders!" << std::endl;
+        glDeleteShader(m_vertex_shader_);
+        m_vertex_shader_ = 0;
         return false;
     }
     return true;
@@ -24,6 +26,8 @@ unsigned int Shader::create_shader_program(const char* path) const {
 
     if(!status) {
         std::cout << "Failed to load fragment shaders!" << std::endl;
+        glDeleteShader(shader);
+        glDeleteProgram(program);
         return 0;
     }
 
@@ -37,6 +41,8 @@ unsigned int Shader::create_shader_program(const char* path) const {
         char log[512];
         glGetProgramInfoLog(program, 512, nullptr, log);
         std::cout << "ERROR::SHADER::LINKING_FAILED\n" << log << std::endl;
+        glDeleteShader(shader);
+        glDeleteProgram(program);
         return 0;
     }
     glDeleteShader(shader);
@@ -44,6 +50,11 @@ unsigned int Shader::create_shader_program(const char* path) const {
 }
 bool Shader::compile_shader(const unsigned int shader, const char *path) {
     std::ifstream file(path);
+    if(!file.is_open()) {
+        std::cout << "Failed to open shader file: " << path << std::endl;
+        return false;
+    }
+
     const std::string str((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
     const char *stream = str.c_str();
     file.close();
@@ -55,11 +66,13 @@ bool Shader::compile_shader(const unsigned int shader, const char *path) {
         char log[512];
         glGetShaderInfoLog(shader, 512, nullptr, log);
         std::cout << "ERROR:SHADER::COMPILATION_FAILED\n" << log << std::endl;
-        return nullptr;
+        return false;
     }
-    return stream;
+    return true;
 }
 
 void Shader::cleanup() const {
-    glDeleteShader(m_vertex_shader_);
+    if(m_vertex_shader_ != 0) {
+        glDeleteShader(m_vertex_shader_);
+    }
 }
